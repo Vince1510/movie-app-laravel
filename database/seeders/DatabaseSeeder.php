@@ -10,11 +10,11 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $adminEmail = env('ADMIN_EMAIL');
-        $adminPassword = env('ADMIN_PASSWORD');
-        $adminName = env('ADMIN_NAME');
+        $adminName = env('ADMIN_NAME', 'Admin User');
+        $adminEmail = env('ADMIN_EMAIL', 'admin@example.com');
+        $adminPassword = env('ADMIN_PASSWORD', 'password');
 
-        User::updateOrCreate(
+        $user = User::updateOrCreate(
             ['email' => $adminEmail],
             [
                 'name' => $adminName,
@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
                 'is_admin' => true,
             ]
         );
+
+        $this->command->info("Admin account succesvol aangemaakt: {$user->email}");
     }
 }
