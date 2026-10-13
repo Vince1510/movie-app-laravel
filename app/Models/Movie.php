@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 // hier komt $movies vandaan
 class Movie extends Model
 {
-    protected $guarded = [
+    protected $fillable = [
         'tmdb_id',
         'title',
         'overview',

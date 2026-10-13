@@ -20,16 +20,16 @@
                 </tr>
             </thead>
             <tbody id="movies-list">
-                <!-- door de lijst met films alles ophalen -->
-                @forelse($movies as $movie)
+                @foreach($movies as $movie)
                     @include('admin.partials.movie-row', ['movie' => $movie])
-                @empty
-                    <tr>
-                        <td colspan="4" class="p-4 text-center text-gray-500">
-                            Er zijn nog geen films toegevoegd.
-                        </td>
-                    </tr>
-                @endforelse
+                @endforeach
+
+                <!-- met css hidden -->
+                <tr class="only:table-row hidden">
+                    <td colspan="4" class="p-4 text-center text-gray-500">
+                        Er zijn nog geen films toegevoegd.
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
