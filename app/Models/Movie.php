@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+// hier komt $movies vandaan
 class Movie extends Model
 {
-    protected $fillable = [
+    protected $guarded = [
         'tmdb_id',
         'title',
         'overview',
@@ -15,6 +17,8 @@ class Movie extends Model
         'release_date',
     ];
 
+
+    // 1 fim kan dus door meerdere gebruikers worden opgeslagen als favoriet
     public function favoritedBy()
     {
         return $this->belongsToMany(User::class, 'movie_user');

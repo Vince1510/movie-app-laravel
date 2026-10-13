@@ -4,9 +4,8 @@
             <h1 class="text-2xl font-bold">Film Beheer</h1>
 
             <!-- Knop die de Create Overlay inlaadt via HTMX -->
-            <button hx-get="{{ route('admin.movies.create') }}" hx-target="#modal-container" hx-swap="innerHTML"
-                class="">
-                + Nieuwe Film
+            <button hx-get="{{ route('admin.movies.create') }}" hx-target="#modal-container" hx-swap="innerHTML">
+                +
             </button>
         </div>
 
@@ -21,6 +20,7 @@
                 </tr>
             </thead>
             <tbody id="movies-list">
+                <!-- door de lijst met films alles ophalen -->
                 @forelse($movies as $movie)
                     @include('admin.partials.movie-row', ['movie' => $movie])
                 @empty

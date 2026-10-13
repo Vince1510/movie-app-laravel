@@ -1,5 +1,5 @@
 <?php
-
+// hier wordt standaard admin gebruiker aangemaakt
 namespace Database\Seeders;
 
 use App\Models\User;
