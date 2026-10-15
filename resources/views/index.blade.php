@@ -45,8 +45,9 @@
                     <div
                         class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition">
                         @if($movie->poster_path)
-                            <img src="https://image.tmdb.org/t/p/w500{{ $movie->poster_path }}" alt="{{ $movie->title }}"
-                                class="w-full h-72 object-cover">
+                            <a href="{{ route('movies.show', $movie) }}">
+                                <img src="https://image.tmdb.org/t/p/w500{{ $movie->poster_path }}" alt="{{ $movie->title }}">
+                            </a>
                         @else
                             <div class="w-full h-72 bg-gray-200 flex items-center justify-center text-xs text-gray-400">
                                 Geen poster

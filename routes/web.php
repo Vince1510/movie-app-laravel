@@ -18,6 +18,12 @@ Route::get('/', function () {
 /*
 Ingelogde Gebruikers Routes
 */
+
+Route::get('/movies/{movie}', function (Movie $movie) {
+    return view('movies.show', compact('movie'));
+})->name('movies.show');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
