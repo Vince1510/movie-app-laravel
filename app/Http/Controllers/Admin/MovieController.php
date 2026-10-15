@@ -61,6 +61,7 @@ class MovieController extends Controller
             'title' => 'required|string|max:255',
             'overview' => 'nullable|string',
             'poster_path' => 'nullable|string',
+            'genre' => 'nullable|string',
             'release_date' => 'nullable|date',
         ]);
 

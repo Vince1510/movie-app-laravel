@@ -1,4 +1,37 @@
+@php
+    // TMDB Genre ID vertaaltabel
+    $genres = [
+        28 => 'Actie',
+        12 => 'Avontuur',
+        16 => 'Animatie',
+        35 => 'Komedie',
+        80 => 'Misdaad',
+        99 => 'Documentaire',
+        18 => 'Drama',
+        10751 => 'Familie',
+        14 => 'Fantasie',
+        36 => 'Historisch',
+        27 => 'Horror',
+        10402 => 'Muziek',
+        9648 => 'Mysterie',
+        10749 => 'Romantiek',
+        878 => 'Sci-Fi',
+        10770 => 'TV Film',
+        53 => 'Thriller',
+        10752 => 'Oorlog',
+        37 => 'Western'
+    ];
+@endphp
+
 @forelse($results as $item)
+    @php
+        // Zetten van de TMDB genre_ids om naar leesbare tekst (bijv. "Actie, Sci-Fi")
+        $movieGenres = collect($item['genre_ids'] ?? [])
+            ->map(fn($id) => $genres[$id] ?? null)
+            ->filter()
+            ->implode(', ');
+    @endphp
+
     <div
         class="flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition mb-2">
         <div class="flex items-center space-x-3">
@@ -15,6 +48,9 @@
                 <h4 class="font-bold text-gray-900 text-sm truncate">{{ $item['title'] }}</h4>
                 <p class="text-xs text-gray-500 mb-1">
                     {{ !empty($item['release_date']) ? substr($item['release_date'], 0, 4) : 'Jaar onbekend' }}
+                    @if(!empty($movieGenres))
+                        • <span class="text-gray-400">{{ $movieGenres }}</span>
+                    @endif
                 </p>
                 <p class="text-xs text-gray-600 line-clamp-2">
                     {{ $item['overview'] ?? 'Geen beschrijving beschikbaar.' }}
@@ -29,6 +65,7 @@
             <input type="hidden" name="title" value="{{ $item['title'] }}">
             <input type="hidden" name="overview" value="{{ $item['overview'] ?? '' }}">
             <input type="hidden" name="poster_path" value="{{ $item['poster_path'] ?? '' }}">
+            <input type="hidden" name="genre" value="{{ $movieGenres }}">
             <input type="hidden" name="release_date" value="{{ $item['release_date'] ?? null }}">
 
             <button type="submit"
