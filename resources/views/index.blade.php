@@ -122,23 +122,17 @@
                             @auth
                                 <form action="{{ route('movies.favorite', $movie) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="text-red-500 hover:scale-110 transition cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
-                                            fill="{{ auth()->user()->favoriteMovies->contains($movie->id) ? 'currentColor' : 'none' }}"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.646a4.5 4.5 0 00-1.78-7.64-4.5 4.5 0 00-5.902.162L12 5.25l-1.002-1.014a4.5 4.5 0 00-6.68 0z" />
-                                        </svg>
+                                    <button type="submit"
+                                        class="text-red-500 hover:scale-125 text-xl transition-transform cursor-pointer leading-none"
+                                        title="{{ auth()->user()->favoriteMovies->contains($movie->id) ? 'Verwijder uit favorieten' : 'Toevoegen aan favorieten' }}">
+                                        {{ auth()->user()->favoriteMovies->contains($movie->id) ? '♥︎' : '♡︎' }}
                                     </button>
                                 </form>
                             @else
-                                <a href="{{ route('login') }}" class="text-gray-400 hover:text-red-500 transition"
+                                <a href="{{ route('login') }}"
+                                    class="text-gray-400 hover:text-red-500 text-xl transition-colors inline-block leading-none"
                                     title="Log in om favorieten op te slaan">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.646a4.5 4.5 0 00-1.78-7.64-4.5 4.5 0 00-5.902.162L12 5.25l-1.002-1.014a4.5 4.5 0 00-6.68 0z" />
-                                    </svg>
+                                    ♡︎
                                 </a>
                             @endauth
                         </div>
