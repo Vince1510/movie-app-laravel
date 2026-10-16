@@ -19,12 +19,12 @@
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+<body class="bg-neutral-950 font-sans antialiased text-zinc-100">
+    <div class="min-h-screen bg-neutral-950">
         @include('layouts.navigation')
 
         @isset($header)
-            <header class="bg-white shadow">
+            <header class="bg-zinc-900/80 shadow-sm border-b border-zinc-800">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
